@@ -13,7 +13,11 @@ const allPosts = [
   { id: 6, user: '고양이언니', postImage: '/placeholder.svg', caption: '자는 모습도 천사' },
 ];
 
-const UserProfilePage = ({ params }: { params: { username: string } }) => {
+interface UserProfilePageProps {
+  params: { username: string };
+}
+
+const UserProfilePage = ({ params }: UserProfilePageProps) => {
   const { username } = params;
   const [isFollowing, setIsFollowing] = useState(false);
 
