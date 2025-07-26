@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      // @ts-ignore
+      // @ts-expect-error
       return React.cloneElement(child, { handleLogin });
     }
     return child;
