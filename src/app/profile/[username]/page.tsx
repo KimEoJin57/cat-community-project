@@ -72,7 +72,7 @@ const UserProfilePage = ({ params }: { params: { username: string } }) => {
         <div className="grid grid-cols-3 gap-1 md:gap-4">
           {userPosts.map((post) => (
             <div key={post.id} className="relative aspect-square group bg-gray-100 rounded-md overflow-hidden">
-              <Image src={post.postImage} alt={post.caption} layout="fill" objectFit="cover" className="transition-transform duration-300 group-hover:scale-110" />
+              <Image src={post.postImage} alt={post.caption} fill style={{ objectFit: 'cover' }} className="transition-transform duration-300 group-hover:scale-110" />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center p-2">
                 <p className="text-white text-sm text-center opacity-0 group-hover:opacity-100 transition-opacity">{post.caption}</p>
               </div>
