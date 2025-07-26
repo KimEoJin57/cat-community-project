@@ -1,18 +1,13 @@
 'use client';
 
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
-import React, { useState } from 'react';
+import React from 'react';
+import { AuthProvider } from '@/contexts/AuthContext';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
 });
 
@@ -23,33 +18,19 @@ const geistMono = Geist_Mono({
 // };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const user = {
     name: '집사님',
     profileImageUrl: '',
   };
 
-  const handleLogin = () => {
-    console.log('Login triggered in RootLayout');
-    setIsLoggedIn(true);
-  };
-  const handleLogout = () => setIsLoggedIn(false);
-
-  const childrenWithProps = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      // @ts-expect-error: handleLogin prop is passed to children
-      return React.cloneElement(child, { handleLogin });
-    }
-    return child;
-  });
-
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-pink-50`}>
-        <Navigation isLoggedIn={isLoggedIn} user={user} handleLogout={handleLogout} />
-        <main className="pt-16">{childrenWithProps}</main>
-      </body>
+      <AuthProvider>
+        <body className={`${inter.variable} antialiased bg-pink-50`}>
+          <Navigation user={user} />
+          <main className="pt-16">{children}</main>
+        </body>
+      </AuthProvider>
     </html>
   );
 }

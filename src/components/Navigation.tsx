@@ -1,8 +1,10 @@
 'use client'
 
-import Link from 'next/link'
-import { useState } from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 import { PawPrint, Menu, X, UserCircle, LogIn, LogOut } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 // Define types for the component props
 interface User {
@@ -11,12 +13,11 @@ interface User {
 }
 
 interface NavigationProps {
-  isLoggedIn: boolean;
   user: User | null;
-  handleLogout: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ isLoggedIn, user, handleLogout }) => {
+const Navigation: React.FC<NavigationProps> = ({ user }) => {
+  const { isLoggedIn, logout: handleLogout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
@@ -53,7 +54,7 @@ const Navigation: React.FC<NavigationProps> = ({ isLoggedIn, user, handleLogout 
               <>
                 <Link href="/profile" className="flex items-center space-x-2 text-gray-600 hover:text-pink-500">
                   {user?.profileImageUrl ? (
-                    <img src={user.profileImageUrl} alt={user?.name || 'User profile'} className="h-8 w-8 rounded-full object-cover" />
+                    <Image src={user.profileImageUrl} alt={user?.name || 'User profile'} width={32} height={32} className="rounded-full object-cover" />
                   ) : (
                     <UserCircle className="h-8 w-8 rounded-full text-gray-400" />
                   )}
@@ -65,7 +66,7 @@ const Navigation: React.FC<NavigationProps> = ({ isLoggedIn, user, handleLogout 
                 </button>
               </>
             ) : (
-              <Link href="/" onClick={() => { /* For now, just clicking goes to home where login is */ }} className="flex items-center space-x-2 text-gray-600 hover:text-pink-500 font-semibold transition-colors rounded-full px-4 py-2 hover:bg-pink-50">
+              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-pink-500 font-semibold transition-colors rounded-full px-4 py-2 hover:bg-pink-50">
                 <LogIn size={18} />
                 <span>로그인</span>
               </Link>
@@ -96,7 +97,7 @@ const Navigation: React.FC<NavigationProps> = ({ isLoggedIn, user, handleLogout 
                 <>
                   <Link href="/profile" className="flex items-center space-x-3 text-gray-700 hover:bg-pink-100 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">
                     {user?.profileImageUrl ? (
-                      <img src={user.profileImageUrl} alt={user?.name || 'User profile'} className="h-8 w-8 rounded-full object-cover" />
+                      <Image src={user.profileImageUrl} alt={user?.name || 'User profile'} width={32} height={32} className="rounded-full object-cover" />
                     ) : (
                       <UserCircle className="h-8 w-8 rounded-full text-gray-400" />
                     )}
@@ -108,7 +109,7 @@ const Navigation: React.FC<NavigationProps> = ({ isLoggedIn, user, handleLogout 
                   </button>
                 </>
               ) : (
-                <Link href="/" onClick={() => { /* For now, just clicking goes to home where login is */ }} className="flex items-center space-x-2 text-gray-700 hover:bg-pink-100 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">
+                <Link href="/" className="flex items-center space-x-2 text-gray-700 hover:bg-pink-100 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">
                   <LogIn size={18} />
                   <span>로그인</span>
                 </Link>

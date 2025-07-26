@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Mail, Key, LogIn } from 'lucide-react'
+import { LogIn } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface HomePageProps {
@@ -137,7 +137,7 @@ const HomePage: React.FC<HomePageProps> = ({ handleLogin }) => {
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">로그인</h2>
           <form onSubmit={handleFormSubmit}>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="email-user">
+              <label className="block text-sm font-bold text-gray-700 mb-2" htmlFor="email-user">
                 아이디
               </label>
               <div className="flex items-center gap-2">

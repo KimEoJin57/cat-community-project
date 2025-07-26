@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Bone, Cat, ShoppingBasket, PawPrint, ToyBrick, Home, TowerControl, CupSoda, House, Plane } from 'lucide-react';
+import { Bone, Cat, ShoppingBasket, PawPrint, ToyBrick, TowerControl, CupSoda, House, Plane } from 'lucide-react';
 
 const categories = [
   { name: '사료', href: '/products/food', icon: Bone, color: 'bg-pink-200' },

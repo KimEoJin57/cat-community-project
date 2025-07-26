@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 // 상품 데이터의 타입을 정의합니다.
 interface Product {
@@ -52,7 +52,7 @@ const sampleProducts: Product[] = [
  * GET 요청을 처리하여 상품 목록을 반환합니다.
  * 현재는 쿠팡 API 대신 임시 데이터를 반환합니다.
  */
-export async function GET(req: NextRequest) {
+export async function GET() {
   // 나중에 실제 API 로직을 다시 추가할 수 있습니다.
   // 지금은 임시 데이터를 반환합니다.
   console.log('Fetching sample product data...');
